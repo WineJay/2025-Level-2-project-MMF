@@ -1,5 +1,5 @@
 # Functions goes here
-def string_check(question, valid_answers =('yes', 'no') , num_letters = 1):
+def string_check(question, valid_answers=('yes', 'no'), num_letters=1):
     """checks that the user enter th full word
     or the first letter of a word from a list of valid response"""
 
