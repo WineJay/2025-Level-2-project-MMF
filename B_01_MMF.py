@@ -50,7 +50,42 @@ it will also choose one lucky ticket holder wins the draw (their ticket is free)
     ''')
 
 
+def not_blank(question):
+    """Checks that a user response is not blank"""
+
+    while True:
+        response = input(question)
+
+        if response != "":
+            return response
+
+        print("Sorry, this can't be blank. Please try again.\n")
+
+
+def int_check(question):
+    """checks that the user enter an integer. """
+
+    error = "Oops - please enter an integer. "
+
+    while True:
+        try:
+            # Return the response if it's an integer
+            response = int(input(question))
+            return response
+
+        except ValueError:
+            print(error)
+
+
 # Main Routine goes here
+
+# initialise tickets numbers
+MAX_TICKETS = 5
+tickets_sold = 0
+
+# initialize variable / non-default options for string checker
+payment_ans = ['cash', 'credit']
+
 
 # Ask user if they want to see the instructions and display them if necessary
 
@@ -62,4 +97,36 @@ if want_instructions == "yes":
     instructions()
 
 print()
-print("program continues...")
+
+while tickets_sold < MAX_TICKETS:
+    print()
+    # ask user for their name
+    name = not_blank("Name: ")  # replace with call to 'not blank' function!
+
+    # if name is exit code, break out of loop
+    if name == "xxx":
+        break
+        # ask for their age and check if it's between 12 and 120
+    age = int_check("Age: ")
+
+    # output error message / success message
+    if age < 12:
+        print(f"Sorry you are too young")
+        continue
+    elif age > 120:
+        print(f"?? That looks like a typo (too old)")
+        continue
+
+    else:
+        pass
+
+    # ask users for their payment method (cash/ credit/ ca/ cr)
+    pay_method = string_check("Payment method: ", payment_ans, 2)
+    print(f"{name} has brought a ticket ({pay_method})")
+
+    tickets_sold += 1
+
+if tickets_sold == MAX_TICKETS:
+    print(f"You have sold all the tickets (ie: {MAX_TICKETS} tickets")
+else:
+    print(f"You have sold {tickets_sold} / {MAX_TICKETS} tickets.")
