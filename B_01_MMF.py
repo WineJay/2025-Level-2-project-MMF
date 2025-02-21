@@ -104,14 +104,18 @@ while tickets_sold < MAX_TICKETS:
     name = not_blank("Name: ")  # replace with call to 'not blank' function!
 
     # if name is exit code, break out of loop
-    if name == "xxx":
+    if name == "xxx" and tickets_sold > 0:
         break
+    elif name == "xxx":
+        print("oops, you need to sell at least one ticket")
+        continue
+
         # ask for their age and check if it's between 12 and 120
     age = int_check("Age: ")
 
     # output error message / success message
     if age < 12:
-        print(f"Sorry you are too young")
+        print(f"Sorry you are too young for this movie")
         continue
     elif age > 120:
         print(f"?? That looks like a typo (too old)")
