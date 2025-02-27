@@ -1,0 +1,4 @@
+=== MMF TEST ===
+
+Random content
+A bit of content
