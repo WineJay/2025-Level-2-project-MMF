@@ -7,7 +7,7 @@ def make_statement(statement, decoration):
     """Emphasises headings by adding decoration
     at the start and end"""
 
-    print(f"{decoration * 3} {statement} {decoration * 3}")
+    return f"{decoration * 3} {statement} {decoration * 3}"
 
 
 def string_check(question, valid_answers=('yes', 'no'), num_letters=1):
@@ -18,15 +18,15 @@ def string_check(question, valid_answers=('yes', 'no'), num_letters=1):
 
         response = input(question).lower()
 
-        for item in valid_answers:
+        for entry in valid_answers:
 
             # check if the response is the entire word
-            if response == item:
-                return item
+            if response == entry:
+                return entry
 
             # check if it's the first letter
-            elif response == item[:num_letters]:
-                return item
+            elif response == entry[:num_letters]:
+                return entry
 
         print(f"Please choose an option from {valid_answers}")
 
@@ -34,7 +34,7 @@ def string_check(question, valid_answers=('yes', 'no'), num_letters=1):
 
 
 def instructions():
-    make_statement("Instructions", "ℹ️")
+    print(make_statement("Instructions", "ℹ️"))
     """Instructions for using MMF"""
 
     print('''
@@ -115,7 +115,7 @@ mini_movie_dict = {
 }
 
 # programme main heading
-make_statement("Mini-Movie Fundraiser Program", "🍿")
+print(make_statement("Mini-Movie Fundraiser Program", "🍿"))
 
 # Ask user if they want to see the instructions and display them if necessary
 # Display them if necessary
@@ -211,15 +211,56 @@ for var_item in add_dollars:
 
 mini_movie_string = (mini_movie_frame.to_string(index=False))
 
-print(f"Total Paid: ${total_paid:.2f}")
-print(f"Total Profit: ${total_profit:.2f}")
+total_paid_string = f"Total Paid: ${total_paid:.2f}"
+total_profit_string = f"Total Profit: ${total_profit:.2f}"
 
 # winner announcement
-print(f"The lucky winner is {winner}. Their ticket worth ${ticket_won:.2f} is free!")
-print(f"Total paid is now ${total_paid - ticket_won:.2f}")
-print(f"Total paid is now ${total_profit - profit_won:.2f}")
+lucky_winner_string = f"The lucky winner is {winner}."f"Their ticket worth ${ticket_won:.2f} is free!"
+final_total_paid_string = f"Total paid is now ${total_paid - ticket_won:.2f}"
+final_profit_string = f"Total profit is now ${total_profit - profit_won:.2f}"
 
 if tickets_sold == MAX_TICKETS:
-    print(f"You have sold all the tickets (ie: {MAX_TICKETS} tickets")
+    num_sold_string = make_statement(f"You have sold all the tickets - "
+                                     f"ie: {MAX_TICKETS} tickets", "-")
 else:
-    print(f"You have sold {tickets_sold} / {MAX_TICKETS} tickets.")
+    num_sold_string = make_statement(f"You have sold {tickets_sold} / "
+                                     f"{MAX_TICKETS} tickets.", "-")
+
+# Additional strings / heading
+heading_string = make_statement("Mini Movie Fundraiser", "=")
+ticket_detail_heading = make_statement("Ticket Details", "-")
+raffle_heading = make_statement("---Raffle Winner ---", "-")
+adjusted_sales_heading = make_statement("Adjusted Sales & Profit",
+                                        "-")
+adjusted_explanation = (f"We have given away a ticket worth ${ticket_won:.2f}which means \n"
+                        f"our sales have decreased by ${ticket_won:.2f} and our profit \n"
+                        f"decreased by ${profit_won:.2f}")
+
+# list of strings to be outputted / written to file
+to_write = [heading_string, "\n",
+            mini_movie_string, "\n",
+            total_paid_string,
+            total_profit_string, "\n",
+            raffle_heading,
+            lucky_winner_string, "\n",
+            adjusted_sales_heading,
+            adjusted_explanation, "\n",
+            final_total_paid_string, "\n",
+            final_profit_string, "\n",
+            num_sold_string]
+
+# Print area
+print()
+for item in to_write:
+    print(item)
+
+# create file to hold data (add .txt extension)
+file_name = "MMF_Ticket_details"
+write_to = "{}.txt".format(file_name)
+
+text_file = open(write_to, "w+")
+
+# write the item to file
+for item in to_write:
+    text_file.write(item)
+    text_file.write("\n")

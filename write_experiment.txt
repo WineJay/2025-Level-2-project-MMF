@@ -1,4 +1,28 @@
-=== MMF TEST ===
+=== Mini Movie Fundraiser ===
 
-Random content
-A bit of content
+
+Name Ticket Price Surcharge  Total Profit
+   A       $10.50     $0.00 $10.50  $5.50
+   B       $10.50     $0.53 $11.03  $5.50
+
+
+Total Paid: $21.52
+Total Profit: $11.00
+
+
+--- ---Raffle Winner --- ---
+The lucky winner is A.Their ticket worth $10.50 is free!
+
+
+--- Adjusted Sales & Profit ---
+We have given away a ticket worth $10.50which means 
+our sales have decreased by $10.50 and our profit 
+decreased by $5.50
+
+
+Total paid is now $11.02
+
+
+Total paid is now $5.50
+
+
